@@ -28,3 +28,15 @@ class CarModelForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = '__all__'
+
+    def clean_value(self):
+        value = self.cleaned_data.get('value')
+        if value < 20000:
+            self.add_error('value', 'Valor mínimo do carro deve ser de R$20.000')
+        return value
+    
+    def clean_year_factory(self):
+        year_factory = self.cleaned_data.get('year_factory')
+        if year_factory < 1975:
+            self.add_error('year_factory', 'Não é possível cadastrar carros fabricado antes de 1975..')
+        return year_factory

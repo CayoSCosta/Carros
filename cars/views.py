@@ -20,7 +20,6 @@ def cars_view(request):
     return render(request, 'cars.html', {'cars': cars}) 
 
 def new_car_view(request):
-    print(request)
     if request.method == 'POST':
         new_car_form = CarModelForm(request.POST, request.FILES)
         if new_car_form.is_valid():
@@ -28,5 +27,6 @@ def new_car_view(request):
             return redirect('cars_list')
     else:
         new_car_form = CarModelForm()
-        return render(request, 'new_car.html', { 'new_car_form': new_car_form} )
+    return render(request, 'new_car.html', { 'new_car_form': new_car_form} )
+    
     
