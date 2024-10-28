@@ -18,7 +18,6 @@ db.sqlite3
 # Static files
 /static/
 /staticfiles/
-/media/
 
 # Arquivos de configuração local
 *.env
