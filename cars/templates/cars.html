@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "shared/_base.html" %}
 {% block content %}
   <style>
     .car-grid {
@@ -63,6 +63,7 @@
     }
 
     input[type="text"] {
+        width: 50%;
         padding: 10px;
         font-size: 16px;
         border: 2px solid #e3e1e1;
@@ -97,6 +98,7 @@
     <button type="submit">Buscar</button>
   </form>
 
+  <h1>Lista de carros</h1>
   <div class="car-grid">
     {% if cars %}
       {% for car in cars %}

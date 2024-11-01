@@ -1,6 +1,12 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+def redirect_view(request):
+    if request.user.is_authenticated:
+        return redirect('cars_list')
+    else:
+        return redirect('login')
 
 def register_View(request):
     if request.method == 'POST':
@@ -18,8 +24,15 @@ def login_view(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login()
+            login(request, user)
+            return redirect('cars_list')
         else:
             login_form = AuthenticationForm()
+    else:
+        login_form = AuthenticationForm()
+
     return render(request, 'login.html', {'login_form': login_form})
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
