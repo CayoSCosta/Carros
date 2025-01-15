@@ -2,13 +2,13 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-def redirect_view(request):
-    if request.user.is_authenticated:
-        return redirect('cars_list')
-    else:
-        return redirect('login')
+# def redirect_view(request):
+#     if request.user.is_authenticated:
+#         return redirect('cars_list')
+#     else:
+#         return redirect('login')
 
-def register_View(request):
+def register_view(request):
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST)
         if user_form.is_valid():
